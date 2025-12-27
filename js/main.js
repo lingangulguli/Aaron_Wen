@@ -94,22 +94,23 @@ function initTimeline() {
     const timelineItems = document.querySelectorAll('.timeline-item');
     
     timelineItems.forEach(item => {
-        // 只对timeline-content部分添加点击事件，避免gallery点击冲突
-        const content = item.querySelector('.timeline-content');
-        if (content) {
-            content.addEventListener('click', (e) => {
-                // Toggle active state
-                const wasActive = item.classList.contains('active');
-                
-                // Close all items first
-                timelineItems.forEach(i => i.classList.remove('active'));
-                
-                // If wasn't active, open this one
-                if (!wasActive) {
-                    item.classList.add('active');
-                }
-            });
-        }
+        item.addEventListener('click', (e) => {
+            // 如果点击的是gallery按钮或小点，不触发展开/收起
+            if (e.target.closest('.gallery-btn') || e.target.closest('.gallery-dot')) {
+                return;
+            }
+            
+            // Toggle active state
+            const wasActive = item.classList.contains('active');
+            
+            // Close all items first
+            timelineItems.forEach(i => i.classList.remove('active'));
+            
+            // If wasn't active, open this one
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        });
     });
 }
 
@@ -151,7 +152,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Gallery Slider with Dots
 function slideGallery(btn, direction) {
-    // 阻止事件冒泡，避免触发timeline-item的点击
+    // 阻止事件冒泡
     event.stopPropagation();
     
     const gallery = btn.closest('.timeline-gallery');
