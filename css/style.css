@@ -614,7 +614,7 @@ a {
 }
 
 /* ============================================
-   Interactive Timeline
+   Interactive Timeline - 紧凑版
    ============================================ */
 .timeline-section {
     background: var(--bg-secondary);
@@ -624,7 +624,7 @@ a {
 
 .timeline {
     position: relative;
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -642,28 +642,28 @@ a {
 .timeline-item {
     position: relative;
     width: 50%;
-    padding: var(--sp-md);
+    padding: 8px 12px;
     cursor: pointer;
 }
 
 .timeline-item:nth-child(odd) {
     left: 0;
-    padding-right: calc(var(--sp-xl) + 20px);
+    padding-right: 32px;
     text-align: right;
 }
 
 .timeline-item:nth-child(even) {
     left: 50%;
-    padding-left: calc(var(--sp-xl) + 20px);
+    padding-left: 32px;
     text-align: left;
 }
 
-/* Timeline Marker with Logo */
+/* Timeline Marker with Logo - 更小 */
 .timeline-marker {
     position: absolute;
-    top: var(--sp-md);
-    width: 40px;
-    height: 40px;
+    top: 12px;
+    width: 32px;
+    height: 32px;
     background: var(--bg-card);
     border: 2px solid var(--accent-primary);
     z-index: 10;
@@ -675,17 +675,17 @@ a {
 }
 
 .timeline-logo {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     object-fit: contain;
 }
 
 .timeline-item:nth-child(odd) .timeline-marker {
-    right: -20px;
+    right: -16px;
 }
 
 .timeline-item:nth-child(even) .timeline-marker {
-    left: -20px;
+    left: -16px;
 }
 
 .timeline-item:hover .timeline-marker,
@@ -694,32 +694,32 @@ a {
     border-color: var(--accent-secondary);
 }
 
-/* Timeline Content */
+/* Timeline Content - 更紧凑 */
 .timeline-content {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    padding: var(--sp-md);
+    padding: 12px 14px;
     transition: var(--transition);
 }
 
 .timeline-item:hover .timeline-content,
 .timeline-item.active .timeline-content {
     border-color: var(--accent-primary);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
 .timeline-header-row {
     display: flex;
     align-items: flex-start;
-    gap: var(--sp-sm);
+    gap: 10px;
 }
 
 .timeline-company-logo {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
     background: var(--bg-secondary);
-    padding: 4px;
+    padding: 3px;
     border: 1px solid var(--border-light);
     flex-shrink: 0;
 }
@@ -735,28 +735,30 @@ a {
 
 .timeline-date {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--accent-primary);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 4px;
-}
-
-.timeline-company {
-    font-size: 1.1rem;
-    font-weight: 700;
+    letter-spacing: 0.08em;
     margin-bottom: 2px;
 }
 
+.timeline-company {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1px;
+    line-height: 1.2;
+}
+
 .timeline-role {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     color: var(--text-secondary);
+    line-height: 1.3;
 }
 
 .timeline-details {
     display: none;
-    margin-top: var(--sp-sm);
-    padding-top: var(--sp-sm);
+    margin-top: 10px;
+    padding-top: 10px;
     border-top: 1px solid var(--border-light);
     text-align: left;
 }
@@ -772,24 +774,25 @@ a {
 }
 
 .timeline-about {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    margin-bottom: var(--sp-sm);
+    margin-bottom: 8px;
     font-style: italic;
+    line-height: 1.5;
 }
 
 .timeline-work {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 .timeline-hint {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text-muted);
-    margin-top: var(--sp-xs);
-    opacity: 0.7;
+    margin-top: 6px;
+    opacity: 0.6;
 }
 
 .timeline-item.active .timeline-hint {
@@ -797,13 +800,13 @@ a {
 }
 
 /* ============================================
-   Timeline Photo Gallery - 在卡片内部展开时显示
+   Timeline Photo Gallery - 紧凑版
    ============================================ */
 .timeline-gallery {
     display: none;
-    margin-top: var(--sp-md);
+    margin-top: 10px;
     border-top: 1px solid var(--border-light);
-    padding-top: var(--sp-md);
+    padding-top: 10px;
 }
 
 .timeline-item.active .timeline-gallery {
@@ -816,7 +819,7 @@ a {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .gallery-track {
@@ -826,29 +829,29 @@ a {
 
 .gallery-track img {
     width: 100%;
-    height: 200px;
+    height: 160px;
     object-fit: cover;
     flex-shrink: 0;
 }
 
-/* 箭头在图片两侧 */
+/* 箭头 - 更小 */
 .gallery-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     background: rgba(0, 0, 0, 0.6);
     border: none;
     color: white;
-    font-size: 1.25rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: background 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .gallery-btn:hover {
@@ -856,25 +859,25 @@ a {
 }
 
 .gallery-prev {
-    left: 8px;
+    left: 6px;
 }
 
 .gallery-next {
-    right: 8px;
+    right: 6px;
 }
 
-/* 小点指示器 */
+/* 小点指示器 - 更小 */
 .gallery-dots {
     display: flex;
     justify-content: center;
-    gap: 6px;
-    padding: 10px;
+    gap: 5px;
+    padding: 8px;
     background: var(--bg-card);
 }
 
 .gallery-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: var(--border-color);
     transition: all 0.3s ease;
@@ -882,35 +885,35 @@ a {
 }
 
 .gallery-dot.active {
-    width: 20px;
-    border-radius: 4px;
+    width: 16px;
+    border-radius: 3px;
     background: var(--accent-primary);
 }
 
 /* Mobile Timeline */
 @media (max-width: 768px) {
     .timeline::before {
-        left: 20px;
+        left: 16px;
     }
     
     .timeline-item {
         width: 100%;
         left: 0 !important;
-        padding-left: 50px !important;
-        padding-right: var(--sp-md) !important;
+        padding-left: 40px !important;
+        padding-right: 8px !important;
         text-align: left !important;
     }
     
     .timeline-marker {
-        width: 32px;
-        height: 32px;
-        left: 4px !important;
+        width: 28px;
+        height: 28px;
+        left: 2px !important;
         right: auto !important;
     }
     
     .timeline-logo {
-        width: 22px;
-        height: 22px;
+        width: 18px;
+        height: 18px;
     }
     
     .timeline-header-row {
@@ -922,12 +925,12 @@ a {
     }
     
     .timeline-company-logo {
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
     }
     
     .gallery-track img {
-        height: 160px;
+        height: 140px;
     }
 }
 
