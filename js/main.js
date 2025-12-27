@@ -1,5 +1,5 @@
 // Portfolio - Main JavaScript
-// Theme Toggle + Interactive Timeline + Copy Phone
+// Theme Toggle + Interactive Timeline + Copy Phone + Gallery
 
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
@@ -94,18 +94,22 @@ function initTimeline() {
     const timelineItems = document.querySelectorAll('.timeline-item');
     
     timelineItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Toggle active state
-            const wasActive = item.classList.contains('active');
-            
-            // Close all items first
-            timelineItems.forEach(i => i.classList.remove('active'));
-            
-            // If wasn't active, open this one
-            if (!wasActive) {
-                item.classList.add('active');
-            }
-        });
+        // 只对timeline-content部分添加点击事件，避免gallery点击冲突
+        const content = item.querySelector('.timeline-content');
+        if (content) {
+            content.addEventListener('click', (e) => {
+                // Toggle active state
+                const wasActive = item.classList.contains('active');
+                
+                // Close all items first
+                timelineItems.forEach(i => i.classList.remove('active'));
+                
+                // If wasn't active, open this one
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        }
     });
 }
 
@@ -141,13 +145,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// ============================================
+// Gallery Slider Functions
+// ============================================
+
 // Gallery Slider with Dots
 function slideGallery(btn, direction) {
+    // 阻止事件冒泡，避免触发timeline-item的点击
+    event.stopPropagation();
+    
     const gallery = btn.closest('.timeline-gallery');
     const track = gallery.querySelector('.gallery-track');
     const dots = gallery.querySelectorAll('.gallery-dot');
     const images = track.querySelectorAll('img');
     const totalImages = images.length;
+    
+    if (totalImages === 0) return;
     
     // Get current index from active dot
     let currentIndex = 0;
@@ -171,6 +184,9 @@ function slideGallery(btn, direction) {
 
 // Click on dot to go to that slide
 function goToSlide(dot, index) {
+    // 阻止事件冒泡
+    event.stopPropagation();
+    
     const gallery = dot.closest('.timeline-gallery');
     const track = gallery.querySelector('.gallery-track');
     const dots = gallery.querySelectorAll('.gallery-dot');
@@ -182,5 +198,6 @@ function goToSlide(dot, index) {
     });
 }
 
+// Make functions globally available
 window.slideGallery = slideGallery;
 window.goToSlide = goToSlide;
