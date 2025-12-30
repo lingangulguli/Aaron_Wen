@@ -218,18 +218,6 @@ function goToSlide(dot, index) {
     });
 }
 
-// ============================================
-// Guestbook Toggle
-// ============================================
-function toggleGuestbook() {
-    const card = document.querySelector('.guestbook-card');
-    if (card) {
-        card.classList.toggle('active');
-    }
-}
-
-window.toggleGuestbook = toggleGuestbook;
-
 // Make functions globally available
 window.slideGallery = slideGallery;
 window.goToSlide = goToSlide;
