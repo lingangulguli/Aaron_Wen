@@ -1,5 +1,5 @@
 // Portfolio - Main JavaScript
-// Theme Toggle + Interactive Timeline + Copy Phone + Gallery
+// Theme Toggle + Interactive Timeline + Copy Phone + Gallery + Giscus
 
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
@@ -37,7 +37,7 @@ function copyPhone() {
 // Make copyPhone globally available
 window.copyPhone = copyPhone;
 
-// Theme Toggle
+// Theme Toggle - 支持Giscus主题同步
 function initThemeToggle() {
     const toggle = document.querySelector('.theme-toggle');
     if (!toggle) return;
@@ -46,11 +46,17 @@ function initThemeToggle() {
     const savedTheme = localStorage.getItem('theme');
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
+    let currentTheme = 'light';
     if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        currentTheme = savedTheme;
     } else if (systemDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+        currentTheme = 'dark';
     }
+    
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // 延迟更新Giscus主题，等待iframe加载
+    setTimeout(() => updateGiscusTheme(currentTheme), 1000);
     
     toggle.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme');
@@ -58,7 +64,20 @@ function initThemeToggle() {
         
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
+        updateGiscusTheme(next);
     });
+}
+
+// 更新Giscus主题
+function updateGiscusTheme(theme) {
+    const giscusFrame = document.querySelector('iframe.giscus-frame');
+    if (giscusFrame) {
+        const giscusTheme = theme === 'dark' ? 'dark' : 'light';
+        giscusFrame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: giscusTheme } } },
+            'https://giscus.app'
+        );
+    }
 }
 
 // Navigation
